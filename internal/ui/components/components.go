@@ -31,7 +31,7 @@ func StationRow(s domain.Station, selected bool, width int) string {
 	country := ""
 	if s.CountryCode != "" {
 		country = theme.BadgeStyle.Render(s.CountryCode)
-	} else if s.Country != "" && len(s.Country) > 3 {
+	} else if s.Country != "" && len(s.Country) >= 2 {
 		country = theme.BadgeStyle.Render(s.Country[:2])
 	}
 
