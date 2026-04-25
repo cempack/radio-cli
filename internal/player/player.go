@@ -57,6 +57,8 @@ func (p *Player) Play(streamURL string) error {
 		return err
 	}
 
+	p.state = StatePlaying
+
 	go func() {
 		err := p.cmd.Wait()
 		p.mu.Lock()
@@ -71,7 +73,6 @@ func (p *Player) Play(streamURL string) error {
 		}
 	}()
 
-	p.state = StatePlaying
 	return nil
 }
 

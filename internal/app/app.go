@@ -361,7 +361,7 @@ func (m *AppModel) tuneSelected() {
 		item := domain.HistoryItem{
 			StationID: s.ID,
 			StartedAt: m.playbackStart,
-			Context:   string(rune('0' + int(m.activeView))),
+			Context:   fmt.Sprintf("%d", m.activeView),
 		}
 		m.history = append([]domain.HistoryItem{item}, m.history...)
 		if len(m.history) > 100 {
