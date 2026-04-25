@@ -93,7 +93,7 @@ func TestRelatedScore(t *testing.T) {
 			Codec:    "MP3",
 		}
 		score := RelatedScore(a, b)
-		// country(3) + language(3) + same bitrate(1) + same codec(1) = 8
+		// country(3) + language(3) + same bitrate(1) + same codec(1) = 8; >= 6 guards against algorithm regressions
 		if score < 6 {
 			t.Errorf("expected score >= 6 for similar station, got %d", score)
 		}

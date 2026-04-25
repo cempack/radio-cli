@@ -220,7 +220,9 @@ func (m *AppModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			default:
 				query := m.searchInput.Value()
 				if query != "" && m.activeView == ViewSearch {
-					m.searchResults = search.FilterStations(m.favorites, search.SearchParams{Query: query})
+					// Filter across discover stations and favorites for broader real-time results
+					pool := append(m.discoverStations, m.favorites...)
+					m.searchResults = search.FilterStations(pool, search.SearchParams{Query: query})
 				}
 			}
 			return m, tea.Batch(cmds...)

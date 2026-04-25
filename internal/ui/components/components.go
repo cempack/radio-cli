@@ -116,13 +116,13 @@ func NowPlayingPanel(s *domain.Station, p *player.Player, width, height int) str
 		lines = append(lines, theme.SubtleStyle.Render("Bitrate: ")+fmt.Sprintf("%d kbps", s.Bitrate))
 	}
 	if len(s.Tags) > 0 {
-		n := 3
-		if len(s.Tags) < n {
-			n = len(s.Tags)
+		maxTagsToDisplay := 3
+		if len(s.Tags) < maxTagsToDisplay {
+			maxTagsToDisplay = len(s.Tags)
 		}
 		lines = append(lines, "")
 		tagLine := ""
-		for i := 0; i < n; i++ {
+		for i := 0; i < maxTagsToDisplay; i++ {
 			tagLine += theme.BadgeStyle.Render(s.Tags[i]) + " "
 		}
 		lines = append(lines, strings.TrimSpace(tagLine))
